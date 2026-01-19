@@ -1,0 +1,9 @@
+graph TD
+    A[Order Service] -->|OrderCreated| B[Payment Service]
+    B -->|PaymentProcessed| C[Inventory Service]
+    C -->|InventoryReserved| D[Fulfillment Service]
+    D -->|OrderFulfilled| E[Notification Service]
+    
+    B -->|PaymentFailed| E
+    C -->|InventoryUnavailable| E
+    D -->|FulfillmentFailed| E
