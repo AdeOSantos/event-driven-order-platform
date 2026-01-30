@@ -8,3 +8,10 @@ include(
     "notification-service",
     "common-events"
 )
+
+dependencyResolutionManagement {
+    repositories {
+        mavenCentral()
+        mavenLocal()
+    }
+}
