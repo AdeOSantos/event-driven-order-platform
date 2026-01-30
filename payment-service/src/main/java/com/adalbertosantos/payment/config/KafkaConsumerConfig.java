@@ -1,4 +1,4 @@
-package com.example.payment.config;
+package com.adalbertosantos.payment.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;

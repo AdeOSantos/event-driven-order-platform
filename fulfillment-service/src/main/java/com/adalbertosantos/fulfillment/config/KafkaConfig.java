@@ -1,4 +1,4 @@
-package com.example.inventory.config;
+package com.adalbertosantos.fulfillment.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -31,7 +31,7 @@ public class KafkaConfig {
     public ConsumerFactory<String, String> consumerFactory() {
         Map<String, Object> config = new HashMap<>();
         config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
-        config.put(ConsumerConfig.GROUP_ID_CONFIG, "inventory-service-group");
+        config.put(ConsumerConfig.GROUP_ID_CONFIG, "fulfillment-service-group");
         config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         config.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, false);
@@ -64,16 +64,8 @@ public class KafkaConfig {
     }
 
     @Bean
-    public NewTopic inventoryReservedTopic() {
-        return TopicBuilder.name("inventory.reserved")
-                .partitions(3)
-                .replicas(1)
-                .build();
-    }
-
-    @Bean
-    public NewTopic inventoryRejectedTopic() {
-        return TopicBuilder.name("inventory.rejected")
+    public NewTopic orderFulfilledTopic() {
+        return TopicBuilder.name("order.fulfilled")
                 .partitions(3)
                 .replicas(1)
                 .build();

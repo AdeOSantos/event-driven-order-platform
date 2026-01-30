@@ -1,4 +1,4 @@
-package com.example.order.infrastructure.config;
+package com.adalbertosantos.order.infrastructure.config;
 
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.producer.ProducerConfig;
