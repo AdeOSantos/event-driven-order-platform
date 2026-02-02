@@ -1,4 +1,4 @@
-# 🚀 Event-Driven Order Platform
+# Event-Driven Order Platform
 
 > A production-ready, event-driven microservices platform for order processing, demonstrating **Staff-level architecture** and best practices.
 
@@ -12,7 +12,7 @@
 
 ---
 
-## 👨‍💻 Author
+## Author
 
 <div align="center">
 
@@ -30,7 +30,7 @@
 This project was **architected and implemented from scratch** by **Adalberto Santos** as a demonstration of production-grade, event-driven microservices architecture. It showcases:
 
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [Overview](#-overview)
 - [Architecture](#-architecture)
@@ -46,7 +46,7 @@ This project was **architected and implemented from scratch** by **Adalberto San
 
 ---
 
-## 🎯 Overview
+## Overview
 
 This project implements a **complete event-driven order processing platform** using microservices architecture and saga choreography pattern. It demonstrates production-grade patterns including:
 
@@ -67,7 +67,7 @@ This project implements a **complete event-driven order processing platform** us
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ### System Architecture
 
@@ -100,7 +100,7 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) and [ADRs](docs/adr/) for detailed archit
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 event-driven-order-platform/
@@ -153,7 +153,7 @@ event-driven-order-platform/
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -166,7 +166,7 @@ event-driven-order-platform/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/event-driven-order-platform.git
+   git clone https://github.com/ADeOSantos/event-driven-order-platform.git
    cd event-driven-order-platform
    ```
 
@@ -207,7 +207,7 @@ event-driven-order-platform/
 
 ---
 
-## 🔧 Services
+## Services
 
 ### Order Service (Port 8081)
 - **Responsibilities**: Order creation, status management
@@ -251,7 +251,7 @@ event-driven-order-platform/
 
 ---
 
-## 🔄 Event Flow
+## Event Flow
 
 ### Happy Path
 ```mermaid
@@ -284,7 +284,7 @@ sequenceDiagram
 
 ---
 
-## ⭐ Key Features
+## Key Features
 
 ### 1. **Event-Driven Communication**
 - Asynchronous messaging via Kafka
@@ -318,7 +318,7 @@ Each service follows clean architecture principles:
 
 ---
 
-## 🏃 Running the Platform
+## Running the Platform
 
 ### Development Mode
 
@@ -350,7 +350,7 @@ Each service has its own `application.yml`:
 
 ---
 
-## 🧪 Testing
+## Testing
 
 ### Run all tests
 ```bash
@@ -369,7 +369,7 @@ Each service has its own `application.yml`:
 
 ---
 
-## 📚 Documentation
+## Documentation
 
 - **[ARCHITECTURE.md](ARCHITECTURE.md)**: System architecture overview
 - **[REQUIREMENTS.md](REQUIREMENTS.md)**: Functional and non-functional requirements
@@ -379,44 +379,44 @@ Each service has its own `application.yml`:
 
 ---
 
-## 🎤 Interview Highlights
+## Interview Highlights
 
 ### What Makes This Staff-Level?
 
 #### 1. **Production Patterns**
-- ✅ Circuit breaker and retry mechanisms
-- ✅ Dead letter queue for failed messages
-- ✅ Optimistic locking for data consistency
-- ✅ Manual offset management (not auto-commit)
-- ✅ Idempotency considerations
+- Circuit breaker and retry mechanisms
+- Dead letter queue for failed messages
+- Optimistic locking for data consistency
+- Manual offset management (not auto-commit)
+- Idempotency considerations
 
 #### 2. **System Design Excellence**
-- ✅ Saga choreography (not orchestration)
-- ✅ Event sourcing principles
-- ✅ Clean architecture boundaries
-- ✅ Proper abstraction layers
-- ✅ Separation of concerns
+- Saga choreography (not orchestration)
+- Event sourcing principles
+- Clean architecture boundaries
+- Proper abstraction layers
+- Separation of concerns
 
 #### 3. **Code Quality**
-- ✅ Multi-module Gradle setup
-- ✅ Shared event contracts
-- ✅ Comprehensive logging
-- ✅ Type safety throughout
-- ✅ Test coverage
+- Multi-module Gradle setup
+- Shared event contracts
+- Comprehensive logging
+- Type safety throughout
+- Test coverage
 
 #### 4. **Operational Readiness**
-- ✅ Docker Compose for local development
-- ✅ Configuration externalization
-- ✅ Health checks and metrics
-- ✅ Distributed tracing setup
-- ✅ Easy deployment path
+- Docker Compose for local development
+- Configuration externalization
+- Health checks and metrics
+- Distributed tracing setup
+- Easy deployment path
 
 #### 5. **Documentation**
-- ✅ Architecture Decision Records (ADRs)
-- ✅ System diagrams
-- ✅ README with clear setup
-- ✅ Inline code documentation
-- ✅ Tradeoffs documented
+- Architecture Decision Records (ADRs)
+- System diagrams
+- README with clear setup
+- Inline code documentation
+- Tradeoffs documented
 
 ### Discussion Points for Interviews
 
@@ -445,7 +445,7 @@ Each service has its own `application.yml`:
 
 ---
 
-## 🚀 Future Enhancements
+## Future Enhancements
 
 - [ ] Add idempotency keys to prevent duplicate processing
 - [ ] Implement saga rollback/compensation patterns
@@ -458,13 +458,13 @@ Each service has its own `application.yml`:
 
 ---
 
-## 📄 License
+## License
 
 This project is for educational and interview preparation purposes.
 
 ---
 
-## 👨‍💻 Author
+## Author
 
 <div align="center">
 
@@ -481,25 +481,24 @@ This project is for educational and interview preparation purposes.
 
 This project was **architected and implemented from scratch** by **Adalberto Santos** as a demonstration of production-grade, event-driven microservices architecture. It showcases:
 
-- 🏗️ **System Design Mastery** - Complete end-to-end saga choreography implementation
-- 🔧 **Engineering Excellence** - Resilience patterns, clean architecture, and operational readiness
-- 📚 **Technical Leadership** - Comprehensive documentation, ADRs, and design decisions
-- 🎯 **Production Mindset** - Built with real-world patterns used at top tech companies
+- **System Design Mastery** - Complete end-to-end saga choreography implementation
+- **Engineering Excellence** - Resilience patterns, clean architecture, and operational readiness
+- **Technical Leadership** - Comprehensive documentation, ADRs, and design decisions
+- **Production Mindset** - Built with real-world patterns used at top tech companies
 
 Every line of code, architecture decision, and documentation reflects the attention to detail expected at Staff+ engineering levels.
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 This is a showcase project created for educational and interview preparation purposes. Feel free to:
-- ⭐ Star this repository if you find it valuable
-- 🔀 Fork it to learn and adapt for your own projects
-- 💬 Open issues for questions or discussions
-- 🤝 Reach out for collaborations or consulting opportunities
+- Star this repository if you find it valuable
+- Fork it to learn and adapt for your own projects
+- Open issues for questions or discussions
+- Reach out for collaborations or consulting opportunities
 
 ---
 
 > **Built with passion and precision by Adalberto Santos**
-> 
-> *Demonstrating Staff-level engineering excellence through code*
+
