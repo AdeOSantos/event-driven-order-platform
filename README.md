@@ -69,6 +69,174 @@ This project implements a **complete event-driven order processing platform** us
 
 ## Architecture
 
+### Event-Driven Order Platform
+```mermaid
+flowchart TB
+%% =========================================================
+%% Event-Driven Order Platform (Production-Grade Architecture)
+%% Microservices + Kafka + Observability + Resilience
+%% Mermaid-safe for GitHub README
+%% =========================================================
+
+%% -------------------------
+%% Client Layer
+%% -------------------------
+subgraph CLIENT["Client Layer"]
+U1["Web / Mobile Client"]
+U2["REST API Consumer"]
+end
+
+%% -------------------------
+%% Edge Layer
+%% -------------------------
+subgraph EDGE["Edge & API Layer"]
+GW["API Gateway\n(Spring Cloud Gateway)"]
+AUTH["Auth & Security\n(JWT / OAuth2)"]
+end
+
+U1 --> GW
+U2 --> GW
+GW --> AUTH
+
+%% -------------------------
+%% Core Microservices
+%% -------------------------
+subgraph SERVICES["Core Microservices (Saga Choreography)"]
+
+OS["Order Service\n(8081)\n- Order Aggregate\n- Publishes OrderCreated"]
+PS["Payment Service\n(8082)\n- Circuit Breaker\n- Retry + DLQ"]
+IS["Inventory Service\n(8083)\n- Optimistic Locking\n- Reservation Logic"]
+FS["Fulfillment Service\n(8084)\n- Shipping Simulation\n- Tracking नंबर"]
+NS["Notification Service\n(8085)\n- Email/SMS Dispatcher\n- Consumes All Events"]
+
+end
+
+AUTH --> OS
+
+%% -------------------------
+%% Datastores (Database per Service)
+%% -------------------------
+subgraph DATA["Service Datastores (Isolation)"]
+ODB["Order DB\n(Postgres/H2)"]
+PDB["Payment DB\n(Postgres/H2)"]
+IDB["Inventory DB\n(Postgres/H2)"]
+FDB["Fulfillment DB\n(Postgres/H2)"]
+NDB["Notification DB\n(Postgres/H2)"]
+end
+
+OS --> ODB
+PS --> PDB
+IS --> IDB
+FS --> FDB
+NS --> NDB
+
+%% -------------------------
+%% Event Backbone
+%% -------------------------
+subgraph KAFKA["Apache Kafka Cluster"]
+T1["order.created"]
+T2["payment.succeeded"]
+T3["payment.failed"]
+T4["inventory.reserved"]
+T5["inventory.rejected"]
+T6["order.fulfilled"]
+T7["dead-letter-queue"]
+end
+
+%% -------------------------
+%% Saga Event Flow (Choreography)
+%% -------------------------
+
+%% Order -> Payment
+OS -- Publishes --> T1
+T1 -- Consumed --> PS
+
+%% Payment Outcomes
+PS -- Success --> T2
+PS -- Failure --> T3
+PS -- Error --> T7
+
+%% Inventory Step
+T2 -- Consumed --> IS
+IS -- Reserved --> T4
+IS -- Rejected --> T5
+
+%% Fulfillment Step
+T4 -- Consumed --> FS
+FS -- Fulfilled --> T6
+
+%% Notifications (All Events)
+T1 --> NS
+T2 --> NS
+T3 --> NS
+T4 --> NS
+T5 --> NS
+T6 --> NS
+T7 --> NS
+
+%% -------------------------
+%% Observability + Ops Layer
+%% -------------------------
+subgraph OBS["Observability & Operations"]
+LOGS["Centralized Logging\n(ELK / Loki)"]
+METRICS["Metrics\n(Prometheus + Grafana)"]
+TRACING["Distributed Tracing\n(OpenTelemetry + Zipkin)"]
+HEALTH["Health Checks\n(Spring Boot Actuator)"]
+end
+
+OS --> TRACING
+PS --> TRACING
+IS --> TRACING
+FS --> TRACING
+NS --> TRACING
+
+OS --> METRICS
+PS --> METRICS
+IS --> METRICS
+FS --> METRICS
+NS --> METRICS
+
+OS --> LOGS
+PS --> LOGS
+IS --> LOGS
+FS --> LOGS
+NS --> LOGS
+
+OS --> HEALTH
+PS --> HEALTH
+IS --> HEALTH
+FS --> HEALTH
+NS --> HEALTH
+
+%% -------------------------
+%% Resilience + Safety Patterns
+%% -------------------------
+subgraph RESILIENCE["Resilience Patterns"]
+CB["Circuit Breaker\n(Resilience4j)"]
+RETRY["Retry + Backoff"]
+IDEMP["Idempotency Keys\n(Event Deduplication)"]
+DLQ["Dead Letter Queue\nManual Recovery"]
+end
+
+PS --> CB
+PS --> RETRY
+OS --> IDEMP
+T7 --> DLQ
+
+%% -------------------------
+%% Deployment Target
+%% -------------------------
+subgraph DEPLOY["Deployment Targets"]
+DOCKER["Docker Compose\n(Local Dev)"]
+K8S["Kubernetes + Helm\n(Production Ready)"]
+end
+
+GW --> DOCKER
+GW --> K8S
+```
+
+
+
 ### System Architecture
 
 ```
